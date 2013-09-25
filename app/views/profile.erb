@@ -1,0 +1,11 @@
+<h3><%= @user.name.capitalize%> Profile </h3>
+
+<h3>Create Post</h3>
+<form action="/create_post" method="POST">
+  <label> Title: </label> <input type="text" name="title"><br>
+  <label> URL: </label> <input type="url" name="url"><br>
+  <input type="submit" value="submit">
+
+</form>
+
+<h4><a href="/logout"> Log Out</a></h4>
