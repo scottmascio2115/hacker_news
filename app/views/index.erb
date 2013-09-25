@@ -7,5 +7,8 @@
   <% end %>
   </ul>
 
-<h4><a href="/logout"> Log Out</a></h4>
+<%if session[:id]%>
+  <h4><a href="/profile/<%= @user.id %>">Profile Page </a></h4>
+  <h4><a href="/logout"> Log Out</a></h4>
+<% end %>
 </div>

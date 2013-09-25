@@ -1,0 +1,7 @@
+<h4><%= @user.name.capitalize%> Posts</h4>
+
+<ul>
+  <%@post.each do |post| %>
+  <li><%=post.title %><a href="<%= post.url%>">URL</a> </li>
+  <% end %>
+</ul>

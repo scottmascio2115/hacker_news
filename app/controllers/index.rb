@@ -1,9 +1,14 @@
 enable :sessions
 
 get '/' do
-  @posts = Post.all
-  
-  erb :index
+  if session[:id]
+    @user = User.find(session[:id])
+    @posts = Post.all
+    erb :index
+  else
+    @posts = Post.all
+    erb :index
+  end
 end
 
 get '/logout' do
@@ -32,6 +37,13 @@ get '/profile/:id' do
   else
     redirect to ('/create_login')
   end
+end
+
+get '/user/:id/posts' do
+  @user = User.find(session[:id])
+  @post = @user.posts
+
+  erb :user_posts
 end
 
 #__________________________________________________
