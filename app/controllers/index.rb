@@ -20,7 +20,7 @@ end
 
 get '/comments/:id' do
   @post = Post.find(params[:id])
-  
+
 
   erb :comments
 end
@@ -62,9 +62,15 @@ post '/create_post' do
   @user = User.find(session[:id])
   @post = Post.create(title: params[:title], url: params[:url])
   @user.posts << @post
+  @user.save
   redirect to ("/")
 end
 
-
-
+post '/create_comment/:id' do
+  @comment = Comment.create(comment: params[:comment])
+  @post = Post.find(params[:id])
+  @post.comments << @comment
+  @post.save
+  redirect to ("/comments/#{@post.id}")
+end
 
