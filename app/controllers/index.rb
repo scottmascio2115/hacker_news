@@ -8,7 +8,7 @@ end
 
 get '/logout' do
   session.clear
-  
+
   redirect to ('/')
 end
 
@@ -16,6 +16,13 @@ get '/create_login' do
 
 
   erb :create_login
+end
+
+get '/comments/:id' do
+  @post = Post.find(params[:id])
+  
+
+  erb :comments
 end
 
 get '/profile/:id' do
