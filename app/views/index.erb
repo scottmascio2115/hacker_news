@@ -1,6 +1,9 @@
 <div class="container">
   <h1>Welcome to Fake Hacker News!</h1>
-  <h4><a href="/create_login"> Login</a></h4>
+  <% if !session[:id] %>
+    <h4><a href="/create_login"> Login</a></h4>
+  <% end %>
+  
   <ul>
   <% @posts.each do |post| %>
     <li> <a href="<%=post.url%>"> <%=post.title%></a> <a href="/comments/<%= post.id%>">Comments</a> </li>    

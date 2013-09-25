@@ -39,6 +39,14 @@ get '/profile/:id' do
   end
 end
 
+get '/user/:id/comments' do
+  @user = User.find(session[:id])
+  @comments = @user.comments
+
+  erb :user_comments
+end
+
+
 get '/user/:id/posts' do
   @user = User.find(session[:id])
   @post = @user.posts
@@ -80,8 +88,11 @@ end
 
 post '/create_comment/:id' do
   @comment = Comment.create(comment: params[:comment])
+  @user = User.find(session[:id])
   @post = Post.find(params[:id])
   @post.comments << @comment
+  @comment.commentor = @user
+  @comment.save
   @post.save
   redirect to ("/comments/#{@post.id}")
 end

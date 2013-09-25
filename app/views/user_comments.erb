@@ -1,0 +1,7 @@
+<h4><%= @user.name.capitalize%> Comments</h4>
+
+<ul>
+  <%@user.comments.each do |comment| %>
+  <li><%=comment.comment %> </li>
+  <% end %>
+</ul>
